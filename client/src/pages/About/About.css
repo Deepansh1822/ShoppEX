@@ -1,0 +1,325 @@
+.about-container {
+    padding: 40px 20px;
+    height: calc(100vh - 6.5rem);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-y: auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-header {
+    margin-bottom: 40px;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+.about-header h1 {
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    display: inline-block;
+    width: 100%;
+}
+
+.about-content {
+    width: 100%;
+    max-width: 800px;
+}
+
+.about-section {
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px var(--card-shadow);
+    border: 1px solid var(--border-color);
+}
+
+.section-title {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.about-section p {
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+}
+
+.vision-box {
+    background-color: var(--bg-tertiary);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-blue);
+    margin-top: 20px;
+}
+
+.vision-box h5 {
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+/* Team Section */
+.team-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.team-info h3 {
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+.team-info .role {
+    color: var(--accent-blue);
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.team-info .values {
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/* Contact Section */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
+
+.contact-item {
+    background-color: var(--bg-tertiary);
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+}
+
+.contact-item i {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.contact-item h5 {
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+/* Tech Section */
+.tech-info {
+    background-color: var(--bg-tertiary);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.tech-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tech-row:last-child {
+    border-bottom: none;
+}
+
+.tech-label {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.tech-value {
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+.about-container {
+    padding: 40px 20px;
+    height: calc(100vh - 6.5rem);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-y: auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-header {
+    margin-bottom: 40px;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+.about-header h1 {
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    display: inline-block;
+    width: 100%;
+}
+
+.about-content {
+    width: 100%;
+    max-width: 800px;
+}
+
+.about-section {
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px var(--card-shadow);
+    border: 1px solid var(--border-color);
+}
+
+.section-title {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.about-section p {
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+}
+
+.vision-box {
+    background-color: var(--bg-tertiary);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-blue);
+    margin-top: 20px;
+}
+
+.vision-box h5 {
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+/* Team Section */
+.team-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.team-info h3 {
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+.team-info .role {
+    color: var(--accent-blue);
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.team-info .values {
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/* Contact Section */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
+
+.contact-item {
+    background-color: var(--bg-tertiary);
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+}
+
+.contact-item i {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.contact-item h5 {
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+/* Tech Section */
+.tech-info {
+    background-color: var(--bg-tertiary);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.tech-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tech-row:last-child {
+    border-bottom: none;
+}
+
+.tech-label {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.tech-value {
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+.tech-tags {
+    display: flex;
+    gap: 8px;
+}
+
+.badge {
+    font-weight: 500;
+    padding: 6px 10px;
+    transition: transform 0.2s ease-in-out;
+    cursor: default;
+}
+
+.badge:hover {
+    transform: scale(1.1);
+}

@@ -1,0 +1,52 @@
+.orders-history-container {
+    padding: 0 20px;
+    height: calc(100vh - 5rem);
+    box-sizing: border-box;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+}
+
+.orders-history-container .table-responsive {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.orders-history-container h2 {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-top: 0;
+    padding-top: 10px;
+}
+
+.table {
+    margin-top: 0;
+    color: var(--text-primary);
+}
+
+.table th {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.table td {
+    vertical-align: middle;
+    color: var(--text-secondary);
+}
+
+.badge {
+    font-size: 0.85em;
+    padding: 5px 8px;
+}
+
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .table td,
+    .table th {
+        white-space: nowrap;
+    }
+}

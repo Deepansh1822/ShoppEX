@@ -1,0 +1,16 @@
+.item-card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px var(--card-shadow);
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    border: 3px solid var(--border-color);
+}
+
+.item-text-fixed {
+    color: #ffffff !important;
+}

@@ -1,0 +1,110 @@
+.feedback-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    min-height: calc(100vh - 6.5rem);
+    box-sizing: border-box;
+    background-color: var(--bg-primary);
+    overflow-y: auto;
+}
+
+.feedback-card {
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 40px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 8px 24px var(--card-shadow);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.feedback-card h2 {
+    color: var(--text-primary);
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+}
+
+.question-block {
+    background-color: var(--bg-tertiary);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.question-block:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--card-shadow);
+}
+
+.question-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.option-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.option-label:hover {
+    background-color: var(--input-border);
+    border-color: #777;
+}
+
+.option-input {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.option-input:checked+span {
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+textarea.form-control {
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--text-primary);
+    resize: vertical;
+}
+
+textarea.form-control:focus {
+    background-color: var(--input-bg);
+    border-color: var(--accent-blue);
+    color: var(--text-primary);
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+textarea.form-control::placeholder {
+    color: var(--text-muted);
+}
+
+.btn-primary {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}

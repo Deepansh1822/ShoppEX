@@ -1,0 +1,107 @@
+.feedback-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    height: calc(100vh - 6.5rem);
+    box-sizing: border-box;
+    background-color: var(--bg-primary);
+}
+
+.feedback-list-column {
+    flex: 0.4;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background-color: var(--bg-secondary);
+}
+
+.feedback-details-column {
+    flex: 0.6;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 24px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.feedback-list-item {
+    background-color: var(--bg-tertiary);
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: var(--text-primary);
+}
+
+.feedback-list-item:hover {
+    background-color: var(--input-border);
+}
+
+.feedback-list-item.active {
+    background-color: var(--accent-blue);
+    color: white;
+}
+
+.feedback-list-item h6 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.feedback-list-item small {
+    color: var(--text-secondary);
+}
+
+.feedback-detail-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.feedback-detail-header small {
+    color: var(--accent-color);
+}
+
+.feedback-detail-section {
+    background-color: var(--bg-tertiary);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.feedback-detail-section h6 {
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.rating-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.rating-row:last-child {
+    border-bottom: none;
+}
+
+.rating-label {
+    color: var(--text-secondary);
+}
+
+.rating-value {
+    font-weight: bold;
+    color: var(--text-primary);
+}
