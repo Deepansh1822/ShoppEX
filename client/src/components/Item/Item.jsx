@@ -1,9 +1,12 @@
-import './Item.css';
+// import './Item.css';
+import './Item.pro.css';
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 const Item = ({ itemName, itemPrice, itemImage, itemId }) => {
     const { addToCart } = useContext(AppContext);
+    const navigate = useNavigate();
     const handleAddToCart = () => {
         addToCart({
             name: itemName,
@@ -13,21 +16,19 @@ const Item = ({ itemName, itemPrice, itemImage, itemId }) => {
         });
     }
     return (
-        <div className="p-3 bg-dark rounded shadow-sm h-100 d-flex align-items-center item-card">
-            <div style={{ position: "relative", marginRight: "15px" }}>
+        <div className="item-card-container">
+            <div className="item-content-left">
                 <img src={itemImage} alt={itemName} className="item-image" />
+                <div className="item-details">
+                    <h6 className="item-name">{itemName}</h6>
+                    <p className="item-price">₹{itemPrice}</p>
+                </div>
             </div>
 
-            <div className="flex-grow-1 ms-2">
-                <h6 className="mb-1 text-light item-text-fixed">{itemName}</h6>
-                <p className="mb-0 fw-bold text-light item-text-fixed">₹{itemPrice}</p>
-            </div>
-
-            <div className="d-flex flex-column justify-content-between align-items-center ms-3"
-                style={{ height: "100%" }}>
-                <i className="bi bi-cart-plus fs-4 text-warning"></i>
-                <button className="btn btn-success btn-sm" onClick={handleAddToCart}>
-                    <i className="bi bi-plus"></i>
+            <div className="item-actions">
+                <i className="bi bi-cart-plus cart-icon" onClick={handleAddToCart}></i>
+                <button className="btn btn-success btn-sm view-btn" onClick={() => navigate(`/item/${itemId}`)}>
+                    View
                 </button>
             </div>
         </div>

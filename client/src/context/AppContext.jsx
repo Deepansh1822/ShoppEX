@@ -13,6 +13,7 @@ export const AppContextProvider = (props) => {
     const [auth, setAuth] = useState({ token: null, role: null });
     const [user, setUser] = useState(null);
     const [cartItems, setCartItems] = useState([]);
+    const [dataLoading, setDataLoading] = useState(true);
 
     const addToCart = (item) => {
         const existingItem = cartItems.find(cartItem => cartItem.name === item.name);
@@ -71,6 +72,8 @@ export const AppContextProvider = (props) => {
                 setItemsData(itemResponse.data);
             } catch (error) {
                 console.error("Error fetching data:", error);
+            } finally {
+                setDataLoading(false);
             }
         }
         loadData();
@@ -90,7 +93,8 @@ export const AppContextProvider = (props) => {
         updateQuantity,
         clearCart,
         user,
-        fetchUserProfile
+        fetchUserProfile,
+        dataLoading
     }
 
     return <AppContext.Provider value={contextValue}>

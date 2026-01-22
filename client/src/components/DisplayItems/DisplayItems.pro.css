@@ -1,0 +1,59 @@
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2.5rem;
+    padding: 1rem 0;
+}
+
+/* Matching exact style from ProductReviews.pro.css as requested */
+.see-more-reviews-btn {
+    padding: 0.8rem 2.5rem;
+    background: transparent;
+    border: 2px solid var(--accent-primary);
+    color: var(--accent-primary);
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+}
+
+.see-more-reviews-btn:hover {
+    background: var(--accent-primary);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+}
+
+.see-more-reviews-btn.show-less {
+    border-color: var(--text-secondary);
+    color: var(--text-secondary);
+}
+
+.see-more-reviews-btn.show-less:hover {
+    background: var(--text-secondary);
+    color: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.search-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-color), transparent);
+    margin: 2rem 0 3rem;
+}
+
+.empty-explore-state i {
+    color: var(--accent-primary);
+}
+
+body.dark .empty-explore-state h4,
+body.dark .empty-explore-state p {
+    color: var(--text-primary) !important;
+}
+
+body.dark .empty-explore-state i {
+    opacity: 0.4 !important;
+}

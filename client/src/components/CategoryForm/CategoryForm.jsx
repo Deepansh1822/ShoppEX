@@ -4,6 +4,16 @@ import toast from "react-hot-toast";
 import { addCategory } from "../../Service/CategoryService.js";
 import { AppContext } from "../../context/AppContext.jsx";
 
+// Helper to determine text contrast
+const isBrightColor = (color) => {
+    const hex = color.replace('#', '');
+    const r = parseInt(hex.substr(0, 2), 16);
+    const g = parseInt(hex.substr(2, 2), 16);
+    const b = parseInt(hex.substr(4, 2), 16);
+    const brightness = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+    return brightness > 155;
+}
+
 const CategoryForm = () => {
     const { setCategories, categories } = useContext(AppContext);
     const [loading, setLoading] = useState(false);
@@ -58,9 +68,32 @@ const CategoryForm = () => {
                 <div className="card col-md-12 form-container">
                     <div className="card-body">
                         <form onSubmit={onSubmitHandler}>
-                            <div className="mb-3">
-                                <label htmlFor="image" className="form-label">
-                                    <img src={image ? URL.createObjectURL(image) : assets.upload} alt="" width={48} />
+                            <div className="mb-3 d-flex justify-content-center">
+                                <label htmlFor="image" className="form-label" style={{ cursor: 'pointer' }}>
+                                    <div style={{
+                                        width: '100px',
+                                        height: '100px',
+                                        borderRadius: '50%',
+                                        overflow: 'hidden',
+                                        border: '3px solid var(--border-color)',
+                                        boxShadow: 'var(--card-shadow)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        background: 'var(--bg-secondary)'
+                                    }}>
+                                        <img
+                                            src={image ? URL.createObjectURL(image) : assets.upload}
+                                            alt=""
+                                            style={{
+                                                width: image ? '100%' : '40px',
+                                                height: image ? '100%' : '40px',
+                                                objectFit: image ? 'cover' : 'contain',
+                                                opacity: image ? 1 : 0.5
+                                            }}
+                                        />
+                                    </div>
+                                    <div className="text-center mt-2 small text-muted upload-text">Upload Photo</div>
                                 </label>
                                 <input type="file" name="image" id="image" className='form-control' hidden onChange={(e) => setImage(e.target.files[0])} />
                             </div>
@@ -89,19 +122,52 @@ const CategoryForm = () => {
                                 ></textarea>
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="bgcolor" className="form-label">Background color</label>
-                                <br />
-                                <input type="color"
-                                    name="bgColor"
-                                    id="bgcolor"
-                                    onChange={onChangeHandler}
-                                    value={data.bgColor}
-                                    placeholder="#ffffff"
-                                />
+                                <label className="form-label">Background Color</label>
+                                <div className="d-flex align-items-center">
+                                    <label htmlFor="bgcolor" style={{
+                                        cursor: 'pointer',
+                                        width: '100%',
+                                        height: '45px',
+                                        backgroundColor: 'var(--accent-primary)',
+                                        borderRadius: '8px',
+                                        border: 'none',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        color: '#ffffff',
+                                        fontWeight: '600',
+                                        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                        className="color-picker-label shadow-sm"
+                                    >
+                                        <span style={{
+                                            width: '20px',
+                                            height: '20px',
+                                            backgroundColor: data.bgColor,
+                                            borderRadius: '50%',
+                                            border: '2px solid rgba(255,255,255,0.8)',
+                                            marginRight: '10px',
+                                            boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                                        }}></span>
+                                        {data.bgColor.toUpperCase()}
+                                        <i className="bi bi-pencil-square ms-2 opacity-75"></i>
+                                    </label>
+                                    <input type="color"
+                                        name="bgColor"
+                                        id="bgcolor"
+                                        onChange={onChangeHandler}
+                                        value={data.bgColor}
+                                        style={{ opacity: 0, position: 'absolute', zIndex: -1 }}
+                                    />
+                                </div>
+                                <div className="form-text mt-2 small text-muted-custom">
+                                    <i className="bi bi-info-circle me-1"></i> Click the button to choose a theme color
+                                </div>
                             </div>
                             <button type="submit"
                                 disabled={loading}
-                                className="btn btn-warning w-100">{loading ? "Loading..." : "Submit"}</button>
+                                className="btn btn-warning w-100">{loading ? "Loading..." : "Save"}</button>
                         </form>
                     </div>
                 </div>

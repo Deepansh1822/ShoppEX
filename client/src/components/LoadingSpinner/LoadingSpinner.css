@@ -2,9 +2,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 5rem);
+    height: 80vh;
     width: 100%;
-    background-color: var(--bg-primary);
+    background-color: transparent;
 }
 
 .stylish-loader {

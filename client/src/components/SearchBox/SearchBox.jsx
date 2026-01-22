@@ -1,22 +1,25 @@
-import { useState } from "react";
+import React from 'react';
+// import './SearchBox.css';
+import './SearchBox.pro.css';
 
-const SearchBox = ({ onSearch }) => {
-    const [searchText, setSearchText] = useState("");
-
-    const handleInputChange = (e) => {
-        const text = e.target.value;
-        setSearchText(text);
-        onSearch(text);
-    }
-
+const SearchBox = ({ searchText, setSearchText }) => {
     return (
-        <div className="input-group mb-3">
-            <input type="text" className="form-control" placeholder="Search items.." value={searchText} onChange={handleInputChange} />
-            <span className="input-group-text bg-warning">
-                <i className="bi bi-search"></i>
-            </span>
+        <div className="search-box-container">
+            <div className="input-group">
+
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search items..."
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                />
+                <span className="input-group-text bg-warning text-dark">
+                    <i className="bi bi-search"></i>
+                </span>
+            </div>
         </div>
-    )
-}
+    );
+};
 
 export default SearchBox;

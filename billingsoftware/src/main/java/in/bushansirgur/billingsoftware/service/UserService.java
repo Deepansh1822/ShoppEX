@@ -12,6 +12,8 @@ public interface UserService {
 
     UserResponse createUser(UserRequest request);
 
+    UserResponse createUser(UserRequest request, MultipartFile file) throws IOException;
+
     String getUserRole(String email);
 
     List<UserResponse> readUsers();

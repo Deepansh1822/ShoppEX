@@ -19,11 +19,21 @@ import Feedback from "./pages/Feedback/Feedback.jsx";
 import AdminFeedback from "./pages/AdminFeedback/AdminFeedback.jsx";
 import About from "./pages/About/About.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
+import ProductDetails from "./pages/ProductDetails/ProductDetails.jsx";
+import CartPage from "./pages/Cart/CartPage.jsx";
+import HelpCenter from "./pages/HelpCenter/HelpCenter.jsx";
 
 import { ThemeProvider } from "./context/ThemeContext.jsx";
 
+import { useEffect } from "react";
+
 const App = () => {
+    console.log("App re-rendering");
     const location = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
 
     return (
         <ThemeProvider>
@@ -31,6 +41,7 @@ const App = () => {
                 {location.pathname !== '/' && location.pathname !== '/login' && location.pathname !== '/signup' && <Menubar />}
                 <Toaster />
                 <Routes>
+                    <Route path="/cart" element={<CartPage />} />
                     <Route path="/" element={<Welcome />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/explore" element={<Explore />} />
@@ -38,12 +49,14 @@ const App = () => {
                     <Route path="/category" element={<ManageCategory />} />
                     <Route path="/users" element={<ManageUsers />} />
                     <Route path="/items" element={<ManageItems />} />
+                    <Route path="/item/:itemId" element={<ProductDetails />} />
 
                     <Route path="/orders" element={<OrderHistory />} />
                     <Route path="/feedback" element={<Feedback />} />
                     <Route path="/admin-feedback" element={<AdminFeedback />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/help" element={<HelpCenter />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="*" element={<NotFound />} />

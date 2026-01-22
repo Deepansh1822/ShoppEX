@@ -20,11 +20,14 @@ public class UserController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse registerUser(@RequestBody UserRequest request) {
+    public UserResponse registerUser(@RequestParam("user") String user,
+            @RequestParam(value = "file", required = false) org.springframework.web.multipart.MultipartFile file) {
         try {
-            return userService.createUser(request);
+            com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
+            UserRequest request = mapper.readValue(user, UserRequest.class);
+            return userService.createUser(request, file);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unable to create user "+e.getMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unable to create user " + e.getMessage());
         }
     }
 

@@ -1,0 +1,352 @@
+.product-details-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: calc(100vh - 80px);
+    /* Adjust based on navbar height */
+    overflow-y: scroll;
+    padding-bottom: 50px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Custom Scrollbar Styling */
+.product-details-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.product-details-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+
+.product-details-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+.product-details-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.back-btn {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    text-decoration: none !important;
+}
+
+.back-btn:hover {
+    transform: translateX(-5px);
+    text-decoration: none !important;
+}
+
+.product-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    background: #fff;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    /* Added border as requested */
+}
+
+.product-image-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    border-radius: 1rem;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+.product-image-large {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.product-image-large:hover {
+    transform: scale(1.05);
+}
+
+.product-info-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.product-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.category-badge {
+    font-size: 0.9rem;
+    padding: 0.5em 1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product-price {
+    font-size: 2rem;
+    color: #2ecc71;
+    font-weight: 600;
+    margin: 0;
+}
+
+.product-description-container {
+    margin-bottom: 2.5rem;
+}
+
+.product-description-container h3 {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #34495e;
+}
+
+.product-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.add-to-cart-btn,
+.go-to-cart-btn {
+    flex: 1;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-to-cart-btn:hover,
+.go-to-cart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    border-top: 1px solid #eee;
+    padding-top: 2rem;
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+.feature-item i {
+    font-size: 1.5rem;
+    color: #3498db;
+}
+
+@media (max-width: 768px) {
+    .product-card {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .product-title {
+        font-size: 2rem;
+    }
+
+    .product-actions {
+        flex-direction: column;
+    }
+}
+
+/* Dark mode adjustments */
+body.dark .product-details-container {
+    color: #ecf0f1;
+}
+
+body.dark .product-details-container::-webkit-scrollbar-track {
+    background: #2c3e50;
+}
+
+body.dark .product-details-container::-webkit-scrollbar-thumb {
+    background: #7f8c8d;
+}
+
+body.dark .product-card {
+    background: #2c3e50;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+body.dark .product-title {
+    color: #ecf0f1;
+}
+
+body.dark .product-image-section {
+    background-color: #34495e;
+}
+
+body.dark .product-description {
+    color: #bdc3c7;
+}
+
+body.dark .feature-item {
+    color: #bdc3c7;
+}
+
+.related-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #dee2e6;
+}
+
+.section-heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    padding-left: 0.5rem;
+    border-left: 4px solid #f1b814;
+}
+
+.items-grid-scrollable {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 1.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: #ced4da #f8f9fa;
+}
+
+.items-grid-scrollable::-webkit-scrollbar {
+    height: 8px;
+}
+
+.items-grid-scrollable::-webkit-scrollbar-track {
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.items-grid-scrollable::-webkit-scrollbar-thumb {
+    background-color: #ced4da;
+    border-radius: 4px;
+}
+
+.items-grid-scrollable .item-card-container {
+    min-width: 250px;
+    flex: 0 0 auto;
+}
+
+body.dark .related-section {
+    border-top-color: #495057;
+}
+
+body.dark .section-heading {
+    color: #ecf0f1;
+}
+
+body.dark .items-grid-scrollable::-webkit-scrollbar-track {
+    background: #2b3035;
+}
+
+body.dark .items-grid-scrollable::-webkit-scrollbar-thumb {
+    background-color: #495057;
+}
+
+.rating-container {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 15px;
+    font-size: 1.1rem;
+    vertical-align: middle;
+}
+
+.rating-container .small {
+    color: #fff !important;
+    opacity: 0.8;
+}
+
+.stars-wrapper {
+    display: inline-flex;
+    gap: 2px;
+}
+
+.rating-text {
+    color: #fff !important;
+    /* Force white as requested */
+}
+
+/* Empty stars should have white border/color */
+.bi-star {
+    color: #fff !important;
+}
+
+/* Filled/Half stars: Yellow fill with White outline */
+.rating-container .bi-star-fill,
+.rating-container .bi-star-half {
+    color: #ffc107 !important;
+    text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff !important;
+}
+
+/* Empty stars: White outline (since it's a font icon, color sets the 'line') */
+.rating-container .bi-star {
+    color: #fff !important;
+    /* Optional: add a slight shadow to make it pop if background is light */
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+body.dark .rating-text {
+    color: #fff;
+}

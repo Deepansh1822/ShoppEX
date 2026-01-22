@@ -1,0 +1,138 @@
+.login-background {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    background: rgba(14, 14, 14, 0.85) !important;
+    /* Sophisticated Dark Grey */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 24px !important;
+    padding: 2.5rem;
+    z-index: 10;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+    animation: fadeInScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.card-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: #ffffff !important;
+}
+
+.card-text.text-muted {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.form-floating input,
+.form-floating .form-control {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    color: #0f172a !important;
+    padding-top: 1.625rem !important;
+    padding-bottom: 0.625rem !important;
+    transition: all 0.2s ease !important;
+}
+
+.form-floating input:focus,
+.form-floating .form-control:focus {
+    background: #f8fafc !important;
+    border-color: var(--accent-primary) !important;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1) !important;
+    color: #0f172a !important;
+    outline: none !important;
+}
+
+/* Placeholder/Label State - Blue */
+.form-floating label {
+    color: var(--accent-primary) !important;
+    padding-left: 1.25rem;
+    opacity: 1 !important;
+    transition: all 0.2s ease !important;
+}
+
+/* Floating State Position */
+.form-floating>.form-control:focus~label,
+.form-floating>.form-control:not(:placeholder-shown)~label,
+.form-floating>.form-control:-webkit-autofill~label {
+    color: var(--accent-primary) !important;
+    opacity: 1 !important;
+    transform: scale(0.85) translateY(-0.75rem) translateX(0.15rem) !important;
+    background-color: transparent !important;
+}
+
+/* Chrome/Safari Autofill override - Light Style */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+    -webkit-text-fill-color: #0f172a !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.btn-dark {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)) !important;
+    border: none !important;
+    border-radius: 14px !important;
+    font-weight: 700 !important;
+    padding: 1rem !important;
+    box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.4);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn-dark:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.5);
+}
+
+.text-decoration-none {
+    color: var(--accent-primary) !important;
+    font-weight: 600;
+}
+
+.back-to-welcome {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff !important;
+    font-size: 1.2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 11;
+    text-decoration: none !important;
+}
+
+.back-to-welcome:hover {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    transform: translateX(-5px);
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
+}

@@ -1,4 +1,5 @@
-import './Profile.css';
+// import './Profile.css';
+import './Profile.pro.css';
 import { assets } from "../../assets/assets.js";
 import { useContext, useRef, useState, useEffect } from "react";
 import { AppContext } from "../../context/AppContext.jsx";
@@ -106,87 +107,98 @@ const Profile = () => {
     }
 
     return (
-        <div className="profile-container">
-            <div className="profile-card">
-                <div className="profile-header">
-                    <div className="profile-image-container" onClick={handleImageClick} style={{ cursor: 'pointer' }}>
-                        <img src={user.profileImage || assets.profile} alt="Profile" className="profile-image" />
-                        <div className="image-overlay">
-                            <span>Change</span>
-                        </div>
-                    </div>
-                    <input
-                        type="file"
-                        ref={fileInputRef}
-                        onChange={handleFileChange}
-                        style={{ display: 'none' }}
-                        accept="image/*"
-                    />
-                    {isEditing ? (
-                        <input
-                            type="text"
-                            className="form-control text-center mb-2"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleInputChange}
-                            placeholder="Enter Name"
-                        />
-                    ) : (
-                        <h2 className="profile-name">{user.name}</h2>
-                    )}
-                    <p className="profile-role">{user.role.replace('ROLE_', '')}</p>
+        <div className="profile-page-wrapper page-entry-anim">
+            <div className="header-container">
+                <div className="header-content">
+                    <h2 className="page-title">
+                        <i className="bi bi-person-badge-fill me-3"></i>Account Profile
+                    </h2>
+                    <p className="page-subtitle">Manage your personal information and account settings</p>
                 </div>
-                <br></br>
+            </div>
 
-                <div className="profile-details">
-                    <div className="detail-item">
-                        <label>Email Address</label>
-                        {isEditing ? (
-                            <input
-                                type="email"
-                                className="form-control"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleInputChange}
-                                placeholder="Enter Email"
-                            />
-                        ) : (
-                            <div className="detail-value">{user.email}</div>
-                        )}
-                    </div>
-
-                    <div className="detail-item">
-                        <label>Password</label>
-                        {isEditing ? (
-                            <input
-                                type="password"
-                                className="form-control"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleInputChange}
-                                placeholder="New Password"
-                            />
-                        ) : (
-                            <div className="detail-value password-hidden">
-                                <i className="bi bi-lock-fill me-2"></i>
-                                Hidden due to security measures
+            <div className="profile-container">
+                <div className="profile-card">
+                    <div className="profile-header">
+                        <div className="profile-image-container" onClick={handleImageClick} style={{ cursor: 'pointer' }}>
+                            <img src={user.profileImage || assets.profile} alt="Profile" className="profile-image" />
+                            <div className="image-overlay">
+                                <span>Change</span>
                             </div>
+                        </div>
+                        <input
+                            type="file"
+                            ref={fileInputRef}
+                            onChange={handleFileChange}
+                            style={{ display: 'none' }}
+                            accept="image/*"
+                        />
+                        {isEditing ? (
+                            <input
+                                type="text"
+                                className="form-control text-center mb-2"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleInputChange}
+                                placeholder="Enter Name"
+                            />
+                        ) : (
+                            <h2 className="profile-name">{user.name}</h2>
+                        )}
+                        <p className="profile-role">{user.role.replace('ROLE_', '')}</p>
+                    </div>
+                    <br></br>
+
+                    <div className="profile-details">
+                        <div className="detail-item">
+                            <label>Email Address</label>
+                            {isEditing ? (
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
+                                    placeholder="Enter Email"
+                                />
+                            ) : (
+                                <div className="detail-value">{user.email}</div>
+                            )}
+                        </div>
+
+                        <div className="detail-item">
+                            <label>Password</label>
+                            {isEditing ? (
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleInputChange}
+                                    placeholder="New Password"
+                                />
+                            ) : (
+                                <div className="detail-value password-hidden">
+                                    <i className="bi bi-lock-fill me-2"></i>
+                                    Hidden due to security measures
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="mt-4">
+                        {isEditing ? (
+                            <div className="d-flex justify-content-center gap-3">
+                                <button className="btn btn-secondary" onClick={handleCancelClick}>Cancel</button>
+                                <button className="btn btn-primary" onClick={handleSaveClick}>Save Changes</button>
+                            </div>
+                        ) : (
+                            <button className="btn btn-outline-primary" onClick={handleEditClick}>
+                                <i className="bi bi-pencil-square me-2"></i>
+                                Edit Profile
+                            </button>
                         )}
                     </div>
-                </div>
-
-                <div className="mt-4">
-                    {isEditing ? (
-                        <div className="d-flex justify-content-center gap-3">
-                            <button className="btn btn-secondary" onClick={handleCancelClick}>Cancel</button>
-                            <button className="btn btn-primary" onClick={handleSaveClick}>Save Changes</button>
-                        </div>
-                    ) : (
-                        <button className="btn btn-outline-primary" onClick={handleEditClick}>
-                            <i className="bi bi-pencil-square me-2"></i>
-                            Edit Profile
-                        </button>
-                    )}
                 </div>
             </div>
         </div>

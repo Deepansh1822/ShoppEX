@@ -36,6 +36,27 @@ public class UserServiceImpl implements UserService {
         return convertToResponse(newUser);
     }
 
+    @Override
+    public UserResponse createUser(UserRequest request, MultipartFile file) throws IOException {
+        UserEntity newUser = convertToEntity(request);
+        newUser = userRepository.save(newUser);
+
+        if (file != null && !file.isEmpty()) {
+            String fileName = UUID.randomUUID().toString() + "."
+                    + StringUtils.getFilenameExtension(file.getOriginalFilename());
+            Path uploadPath = Paths.get("uploads").toAbsolutePath().normalize();
+            Files.createDirectories(uploadPath);
+            Path targetLocation = uploadPath.resolve(fileName);
+            Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+
+            String imgUrl = "http://localhost:8080/api/v1.0/uploads/" + fileName;
+            newUser.setProfileImage(imgUrl);
+            newUser = userRepository.save(newUser);
+        }
+
+        return convertToResponse(newUser);
+    }
+
     private UserResponse convertToResponse(UserEntity newUser) {
         return UserResponse.builder()
                 .name(newUser.getName())

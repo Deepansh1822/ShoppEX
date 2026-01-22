@@ -1,8 +1,11 @@
-import './Feedback.css';
+// import './Feedback.css';
+import './Feedback.pro.css';
 import { useState } from "react";
 import { submitFeedback } from "../../Service/FeedbackService.js";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../components/Footer/Footer.jsx";
+import BackToTop from "../../components/BackToTop/BackToTop.jsx";
 
 const Feedback = () => {
     const navigate = useNavigate();
@@ -59,53 +62,62 @@ const Feedback = () => {
     }
 
     return (
-        <div className="feedback-container">
-            <div className="feedback-card">
-                <h2>We Value Your Feedback</h2>
-                <p className="text-center mb-4" style={{ color: '#ffc107' }}>Your feedback helps us improve our services for you.</p>
-                <form onSubmit={handleSubmit}>
-                    {questions.map((q) => (
-                        <div key={q.id} className="question-block">
-                            <p className="question-text">{q.text}</p>
-                            <div className="options-grid">
-                                {q.options.map((option) => (
-                                    <label key={option} className="option-label">
-                                        <input
-                                            type="radio"
-                                            name={q.id}
-                                            value={option}
-                                            checked={data[q.id] === option}
-                                            onChange={handleChange}
-                                            className="option-input form-check-input"
-                                            required
-                                        />
-                                        {option}
-                                    </label>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
-
-                    <div className="mb-4">
-                        <label htmlFor="comments" className="form-label fw-bold">Any suggestions for improvement?</label>
-                        <textarea
-                            id="comments"
-                            name="comments"
-                            className="form-control"
-                            rows="4"
-                            value={data.comments}
-                            onChange={handleChange}
-                            placeholder="Tell us what we can do better..."
-                        ></textarea>
-                    </div>
-
-                    <div className="d-grid">
-                        <button type="submit" className="btn btn-primary btn-lg" disabled={loading}>
-                            {loading ? "Submitting..." : "Submit Feedback"}
-                        </button>
-                    </div>
-                </form>
+        <div className="feedback-page-wrapper page-entry-anim">
+            <div className="title-container">
+                <div className="header-content">
+                    <h2 className="page-title"><i className="bi bi-chat-heart me-3"></i>User Feedback</h2>
+                    <p className="page-subtitle">Your insights help us build a better shopping experience</p>
+                </div>
             </div>
+
+            <div className="feedback-container">
+                <div className="feedback-card">
+                    <form onSubmit={handleSubmit}>
+                        {questions.map((q) => (
+                            <div key={q.id} className="question-block">
+                                <p className="question-text">{q.text}</p>
+                                <div className="options-grid">
+                                    {q.options.map((option) => (
+                                        <label key={option} className="option-label">
+                                            <input
+                                                type="radio"
+                                                name={q.id}
+                                                value={option}
+                                                checked={data[q.id] === option}
+                                                onChange={handleChange}
+                                                className="option-input form-check-input"
+                                                required
+                                            />
+                                            {option}
+                                        </label>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+
+                        <div className="mb-4">
+                            <label htmlFor="comments" className="form-label fw-bold">Any suggestions for improvement?</label>
+                            <textarea
+                                id="comments"
+                                name="comments"
+                                className="form-control"
+                                rows="4"
+                                value={data.comments}
+                                onChange={handleChange}
+                                placeholder="Tell us what we can do better..."
+                            ></textarea>
+                        </div>
+
+                        <div className="d-grid">
+                            <button type="submit" className="btn btn-primary btn-lg" disabled={loading}>
+                                {loading ? "Submitting..." : "Submit Feedback"}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <Footer />
+            <BackToTop />
         </div>
     )
 }

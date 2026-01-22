@@ -1,4 +1,5 @@
-import './Login.css';
+// import './Login.css';
+import './Login.pro.css';
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { login } from "../../Service/AuthService.js";
@@ -50,9 +51,12 @@ const Login = () => {
     }
 
     return (
-        <div className="bg-light d-flex align-items-center justify-content-center vh-100 login-background" style={{ backgroundImage: `url(${assets.login_img})` }}>
+        <div className="bg-light d-flex align-items-center justify-content-center vh-100 login-background page-entry-anim" style={{ backgroundImage: `url(${assets.login_img})` }}>
             <div className="card shadow-lg w-100 login-card" style={{ maxWidth: '480px' }}>
-                <div className="card-body">
+                <div className="card-body position-relative">
+                    <Link to="/" className="back-to-welcome" title="Back to Welcome">
+                        <i className="bi bi-house-door-fill"></i>
+                    </Link>
                     <div className="text-center">
                         <h1 className="card-title">Login</h1>
                         <p className="card-text text-muted">
@@ -62,13 +66,13 @@ const Login = () => {
                     <div className="mt-4">
                         <form onSubmit={onSubmitHandler} autoComplete="off">
                             <div className="form-floating mb-4">
-                                <input type="text" name="email" id="email" placeholder="Enter Email" className="form-control" onChange={onChangeHandler} value={data.email} autoComplete="off" />
+                                <input type="text" name="email" id="email" placeholder="" className="form-control" onChange={onChangeHandler} value={data.email} autoComplete="off" />
                                 <label htmlFor="email" className="text-muted">
                                     Email
                                 </label>
                             </div>
                             <div className="form-floating mb-4">
-                                <input type="password" name="password" id="password" placeholder="**********" className="form-control" onChange={onChangeHandler} value={data.password} autoComplete="new-password" />
+                                <input type="password" name="password" id="password" placeholder="" className="form-control" onChange={onChangeHandler} value={data.password} autoComplete="new-password" />
                                 <label htmlFor="password" className="text-muted">
                                     Password
                                 </label>

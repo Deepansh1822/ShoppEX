@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { addUser } from "../../Service/UserService.js";
+import { assets } from "../../assets/assets.js";
 import toast from "react-hot-toast";
 
 const UserForm = ({ setUsers }) => {
     const [loading, setLoading] = useState(false);
+    const [image, setImage] = useState(false);
     const [data, setData] = useState({
         name: "",
         email: "",
@@ -20,8 +22,15 @@ const UserForm = ({ setUsers }) => {
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         setLoading(true);
+
+        const formData = new FormData();
+        formData.append("user", JSON.stringify(data));
+        if (image) {
+            formData.append("file", image);
+        }
+
         try {
-            const response = await addUser(data);
+            const response = await addUser(formData);
             setUsers((prevUsers) => [...prevUsers, response.data]);
             toast.success("User Added");
             setData({
@@ -30,6 +39,7 @@ const UserForm = ({ setUsers }) => {
                 password: "",
                 role: "ROLE_USER",
             })
+            setImage(false);
         } catch (e) {
             console.error(e);
             toast.error("Error adding user");
@@ -44,6 +54,35 @@ const UserForm = ({ setUsers }) => {
                 <div className="card col-md-12 form-container">
                     <div className="card-body">
                         <form onSubmit={onSubmitHandler}>
+                            <div className="mb-3 d-flex justify-content-center">
+                                <label htmlFor="image" className="form-label" style={{ cursor: 'pointer' }}>
+                                    <div style={{
+                                        width: '100px',
+                                        height: '100px',
+                                        borderRadius: '50%',
+                                        overflow: 'hidden',
+                                        border: '3px solid var(--border-color)',
+                                        boxShadow: 'var(--card-shadow)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        background: 'var(--bg-secondary)'
+                                    }}>
+                                        <img
+                                            src={image ? URL.createObjectURL(image) : assets.upload}
+                                            alt=""
+                                            style={{
+                                                width: image ? '100%' : '40px',
+                                                height: image ? '100%' : '40px',
+                                                objectFit: image ? 'cover' : 'contain',
+                                                opacity: image ? 1 : 0.5
+                                            }}
+                                        />
+                                    </div>
+                                    <div className="text-center mt-2 small text-muted upload-text">Upload Photo</div>
+                                </label>
+                                <input type="file" name="image" id="image" className='form-control' hidden onChange={(e) => setImage(e.target.files[0])} />
+                            </div>
                             <div className="mb-3">
                                 <label htmlFor="name" className="form-label">Name</label>
                                 <input type="text"

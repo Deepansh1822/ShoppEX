@@ -1,4 +1,5 @@
-import './Dashboard.css';
+// import './Dashboard.css';
+import './Dashboard.pro.css';
 import { useEffect, useState } from "react";
 import { fetchDashboardData } from "../../Service/Dashboard.js";
 import toast from "react-hot-toast";
@@ -24,7 +25,13 @@ const Dashboard = () => {
     }, []);
 
     if (loading) {
-        return <LoadingSpinner />;
+        return (
+            <div className="dashboard-wrapper page-entry-anim">
+                <div className="dashboard-container">
+                    <LoadingSpinner />
+                </div>
+            </div>
+        );
     }
 
     if (!data) {
@@ -32,8 +39,22 @@ const Dashboard = () => {
     }
 
     return (
-        <div className="dashboard-wrapper">
+        <div className="dashboard-wrapper page-entry-anim">
             <div className="dashboard-container">
+                <header className="dashboard-header">
+                    <div className="header-content">
+                        <h2 className="page-title">
+                            <i className="bi bi-speedometer2 me-3"></i>Sales Synopsis
+                        </h2>
+                        <p className="dashboard-subtitle">Real-time overview of your store's performance</p>
+                    </div>
+                    <div className="header-actions">
+                        <div className="date-display">
+                            <i className="bi bi-calendar3"></i>
+                            <span>{new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                        </div>
+                    </div>
+                </header>
                 <div className="stats-grid">
                     <div className="stat-card">
                         <div className="stat-icon">
@@ -61,43 +82,50 @@ const Dashboard = () => {
                         Recent Orders
                     </h3>
                     <div className="orders-table-container">
-                        <table className="orders-table">
-                            <thead>
-                                <tr>
-                                    <th>Order Id</th>
-                                    <th>Customer</th>
-                                    <th>Amount</th>
-                                    <th>Payment</th>
-                                    <th>Status</th>
-                                    <th>Time</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {data.recentOrders.map((order) => (
-                                    <tr key={order.orderId}>
-                                        <td>{order.orderId.substring(0, 8)}...</td>
-                                        <td>{order.customerName}</td>
-                                        <td>₹{order.grandTotal.toFixed(2)}</td>
-                                        <td>
-                                            <span className={`payment-method ${order.paymentMethod.toLowerCase()}`}>
-                                                {order.paymentMethod}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span className={`status-badge ${order.paymentDetails.status.toLowerCase()}`}>
-                                                {order.paymentDetails.status}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            {new Date(order.createdAt).toLocaleDateString([], {
-                                                hour: '2-digit',
-                                                minute: '2-digit',
-                                            })}
-                                        </td>
+                        {data.recentOrders.length === 0 ? (
+                            <div className="empty-recent-orders text-center py-5">
+                                <i className="bi bi-journal-x mb-3" style={{ fontSize: '2.5rem', display: 'block', opacity: 0.5 }}></i>
+                                <p className="text-muted">No orders recorded for today yet.</p>
+                            </div>
+                        ) : (
+                            <table className="orders-table">
+                                <thead>
+                                    <tr>
+                                        <th>Order Id</th>
+                                        <th>Customer</th>
+                                        <th>Amount</th>
+                                        <th>Payment</th>
+                                        <th>Status</th>
+                                        <th>Time</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {data.recentOrders.map((order) => (
+                                        <tr key={order.orderId}>
+                                            <td>{order.orderId}</td>
+                                            <td>{order.customerName}</td>
+                                            <td>₹{order.grandTotal.toFixed(2)}</td>
+                                            <td>
+                                                <span className={`payment-method ${order.paymentMethod.toLowerCase()}`}>
+                                                    {order.paymentMethod}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span className={`status-badge ${order.paymentDetails.status.toLowerCase()}`}>
+                                                    {order.paymentDetails.status}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                {new Date(order.createdAt).toLocaleDateString([], {
+                                                    hour: '2-digit',
+                                                    minute: '2-digit',
+                                                })}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        )}
                     </div>
                 </div>
             </div>

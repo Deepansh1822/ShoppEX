@@ -1,10 +1,27 @@
 .item-image {
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    border: 3px solid var(--border-color);
+    width: 90px !important;
+    height: 90px !important;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    object-fit: cover;
 }
 
 .item-card {
     max-width: 100% !important;
+}
+
+.btn-circle {
+    width: 35px !important;
+    height: 35px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-circle:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4) !important;
 }

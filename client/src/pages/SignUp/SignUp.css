@@ -21,9 +21,9 @@
 
 .signup-card .form-control,
 .signup-card .form-select {
-    background-color: #ffffff;
+    background-color: #ffffff !important;
     border-color: #ced4da;
-    color: #495057;
+    color: #000000 !important;
 }
 
 .signup-card .form-control::placeholder {

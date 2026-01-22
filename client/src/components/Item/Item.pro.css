@@ -1,0 +1,110 @@
+.item-card-container {
+    background: var(--bg-tertiary);
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: var(--transition-base);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.item-card-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+.item-content-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.item-image {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #fff;
+    padding: 1rem;
+    transition: var(--transition-base);
+}
+
+body.dark .item-image {
+    background: #f8fafc;
+    /* Keep images readable in dark mode */
+}
+
+.item-card-container:hover .item-image {
+    transform: scale(1.05);
+}
+
+.item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.item-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.item-price {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--accent-primary);
+    margin: 0;
+}
+
+.item-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--border-color);
+}
+
+.cart-icon {
+    font-size: 1.5rem;
+    color: #ffffff !important;
+    cursor: pointer;
+    transition: var(--transition-base);
+    background: rgb(234, 99, 9);
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.cart-icon:hover {
+    background: rgb(223, 114, 42);
+    color: white;
+    transform: translateY(-3px);
+}
+
+.view-btn {
+    border-radius: 10px !important;
+    padding: 0.5rem 1.5rem !important;
+    font-weight: 600 !important;
+    background: var(--accent-gold) !important;
+    border: none !important;
+    color: #ffffff !important;
+    transition: all 0.3s ease !important;
+}
+
+.view-btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-3px);
+}

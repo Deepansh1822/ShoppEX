@@ -1,0 +1,43 @@
+.category-hover {
+    transition: var(--transition-base);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    min-height: 90px;
+    overflow: hidden;
+}
+
+.category-hover:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.1);
+}
+
+.category-image {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    transition: var(--transition-base);
+}
+
+.category-hover:hover .category-image {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.category-hover h6 {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.category-hover p {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.active-category {
+    display: none;
+}

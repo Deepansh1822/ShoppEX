@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --font-main: 'Outfit', sans-serif;
+
+    /* Light Theme - Professional & Readable */
+    --bg-primary: #f1f5f9;
+    /* Slate 100 - Cool gray background reduces eye strain */
+    --bg-secondary: #ffffff;
+    /* Pure White - High contrast for cards and sidebar */
+    --bg-tertiary: #f8fafc;
+    /* Slate 50 - Very subtle hover states */
+    --bg-quaternary: #e2e8f0;
+    /* Slate 200 - Distinct borders/dividers */
+
+    --text-primary: #0f172a;
+    /* Slate 900 - Maximum readability contrast */
+    --text-secondary: #334155;
+    /* Slate 700 - Darker secondary text for better visibility */
+    --text-muted: #64748b;
+    /* Slate 500 - Readable even when muted */
+
+    --accent-primary: #2563eb;
+    /* Blue 600 - Trustworthy, professional royal blue */
+    --accent-secondary: #4f46e5;
+    /* Indigo 600 - distinct secondary interactions */
+    --accent-gold: #d97706;
+    /* Amber 600 - Readable warning color (darker than yellow) */
+
+    --border-color: #cbd5e1;
+    /* Slate 300 - clearly defined boundaries */
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --glass-bg: rgba(255, 255, 255, 0.95);
+    /* Almost opaque for clarity */
+    --glass-border: rgba(226, 232, 240, 1);
+
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark {
+    /* Dark Theme - Premium Palette */
+    --bg-primary: #020617;
+    --bg-secondary: #0f172a;
+    --bg-tertiary: #1e293b;
+    --bg-quaternary: rgba(60, 77, 93, 0.5);
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #64748b;
+    --accent-primary: #818cf8;
+    --accent-secondary: #a78bfa;
+    --accent-gold: #fbbf24;
+    --border-color: #1e293b;
+    --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -10px rgba(0, 0, 0, 0.3);
+    --glass-bg: rgba(15, 23, 42, 0.7);
+    --glass-border: rgba(30, 41, 59, 0.5);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-primary);
+    color: #0f172a;
+    /* Hardcode Slate 900 for max contrast if var fails */
+    line-height: 1.6;
+    transition: var(--transition-base);
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    /* Crisp */
+    letter-spacing: -0.015em;
+    color: var(--text-primary);
+}
+
+a {
+    transition: color 0.2s ease;
+    text-decoration: none;
+    color: #2563eb;
+    /* Blue 600 */
+    font-weight: 500;
+}
+
+a:hover {
+    color: #1d4ed8;
+    /* Blue 700 */
+    text-decoration: underline;
+    /* Standard link behavior for clarity */
+}
+
+/* Premium Button Styles */
+.btn {
+    border-radius: 8px;
+    /* Slightly sharper corners for professional feel */
+    padding: 0.6rem 1.25rem;
+    /* More compact */
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    /* Prepare for borders */
+}
+
+.btn-primary {
+    background-color: var(--accent-primary);
+    background-image: none;
+    /* Remove playful gradient */
+    color: white;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    /* Subtle shadow */
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+    /* Darker Blue on hover */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+    filter: none;
+}
+
+.btn-warning {
+    background-color: #fffbeb;
+    /* Light yellow bg */
+    color: #b45309;
+    /* Dark orange text */
+    border: 1px solid #fcd34d;
+}
+
+.btn-warning:hover {
+    background-color: #fef3c7;
+    transform: translateY(-1px);
+    color: #92400e;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    /* Reduced blur for clarity */
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+
+/* Modern Inputs */
+input,
+select,
+textarea {
+    background-color: #f8fafc !important;
+    /* Force subtle gray bg on inputs */
+    border: 1px solid #cbd5e1 !important;
+    /* Slate 300 */
+    color: var(--text-primary) !important;
+    border-radius: 8px !important;
+    padding: 0.625rem 0.875rem !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+    font-size: 0.95rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none !important;
+    background-color: #ffffff !important;
+    /* White on focus */
+    border-color: var(--accent-primary) !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+    /* Blue ring */
+}
+
+/* Darker placeholders for better visibility on light backgrounds */
+input::placeholder,
+textarea::placeholder {
+    color: #475569 !important;
+    opacity: 0.8 !important;
+}
+
+/* Card Styling */
+.card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition-base);
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+/* Page Entry Animations */
+.page-entry-anim {
+    animation: fadeInSlide 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: scale(0.98) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+::content-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}

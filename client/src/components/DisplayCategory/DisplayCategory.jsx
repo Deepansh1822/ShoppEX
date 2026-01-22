@@ -1,11 +1,11 @@
 import './DisplayCategory.css';
 import Category from "../Category/Category.jsx";
-import {assets} from "../../assets/assets.js";
+import { assets } from "../../assets/assets.js";
 
-const DisplayCategory = ({selectedCategory, setSelectedCategory, categories}) => {
+const DisplayCategory = ({ selectedCategory, setSelectedCategory, categories }) => {
     return (
-        <div className="row g-3" style={{width: '100%', margin: 0}}>
-            <div key="all" className="col-md-3 col-sm-6" style={{padding: '0 10px'}}>
+        <div className="row g-3" style={{ width: '100%', margin: 0 }}>
+            <div key="all" className="col-md-3 col-sm-6" style={{ padding: '0 10px' }}>
                 <Category
                     categoryName="All Items"
                     imgUrl={assets.device}
@@ -16,7 +16,7 @@ const DisplayCategory = ({selectedCategory, setSelectedCategory, categories}) =>
                 />
             </div>
             {categories.map(category => (
-                <div key={category.categoryId} className="col-md-3 col-sm-6" style={{padding: '0 10px'}}>
+                <div key={category.categoryId} className="col-md-3 col-sm-6" style={{ padding: '0 10px' }}>
                     <Category
                         categoryName={category.name}
                         imgUrl={category.imgUrl}

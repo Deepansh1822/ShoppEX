@@ -1,4 +1,5 @@
-import './CartSummary.css';
+// import './CartSummary.css';
+import './CartSummary.pro.css';
 import { useContext, useState } from "react";
 import { AppContext } from "../../context/AppContext.jsx";
 import ReceiptPopup from "../ReceiptPopup/ReceiptPopup.jsx";
@@ -13,6 +14,7 @@ const CartSummary = ({ customerName, mobileNumber, setMobileNumber, setCustomerN
     const [isProcessing, setIsProcessing] = useState(false);
     const [orderDetails, setOrderDetails] = useState(null);
     const [showPopup, setShowPopup] = useState(false);
+    const [selectedPaymentMode, setSelectedPaymentMode] = useState(null);
 
     const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
     const tax = totalAmount * 0.01;
@@ -22,11 +24,11 @@ const CartSummary = ({ customerName, mobileNumber, setMobileNumber, setCustomerN
         setCustomerName("");
         setMobileNumber("");
         clearCart();
+        setSelectedPaymentMode(null);
     }
 
-    const placeOrder = () => {
-        setShowPopup(true);
-        clearAll();
+    const handlePlaceOrder = () => {
+        completePayment();
     }
 
     const handlePrintReceipt = () => {
@@ -52,7 +54,12 @@ const CartSummary = ({ customerName, mobileNumber, setMobileNumber, setCustomerN
         }
     }
 
-    const completePayment = async (paymentMode) => {
+    const completePayment = async () => {
+        const paymentMode = selectedPaymentMode;
+        if (!paymentMode) {
+            toast.error("Please select a payment mode");
+            return;
+        }
         if (!customerName || !mobileNumber) {
             toast.error("Please enter customer details");
             return;
@@ -79,6 +86,8 @@ const CartSummary = ({ customerName, mobileNumber, setMobileNumber, setCustomerN
             if (response.status === 201 && paymentMode === "cash") {
                 toast.success("Cash received");
                 setOrderDetails(savedData);
+                setShowPopup(true);
+                clearAll();
             } else if (response.status === 201 && paymentMode === "upi") {
                 const razorpayLoaded = await loadRazorpayScript();
                 if (!razorpayLoaded) {
@@ -148,6 +157,8 @@ const CartSummary = ({ customerName, mobileNumber, setMobileNumber, setCustomerN
                         razorpaySignature: response.razorpay_signature
                     },
                 });
+                setShowPopup(true);
+                clearAll();
             } else {
                 toast.error("Payment processing failed");
             }
@@ -157,60 +168,74 @@ const CartSummary = ({ customerName, mobileNumber, setMobileNumber, setCustomerN
         }
     };
 
+    const handlePaymentSelection = (mode) => {
+        if (!customerName || !mobileNumber) {
+            toast.error("Please enter customer details first");
+            return;
+        }
+        setSelectedPaymentMode(mode);
+    }
+
     return (
-        <div className="mt-2">
+        <div className="mt-2 text-primary">
             <div className="cart-summary-details">
-                <div className="d-flex justify-content-between mb-2">
-                    <span>Item: </span>
-                    <span>₹{totalAmount.toFixed(2)}</span>
+                <div className="d-flex">
+                    <span className="summary-item-label">Subtotal</span>
+                    <span className="summary-item-value">₹{totalAmount.toFixed(2)}</span>
                 </div>
-                <div className="d-flex justify-content-between mb-2">
-                    <span>Tax (1%):</span>
-                    <span>₹{tax.toFixed(2)}</span>
+                <div className="d-flex">
+                    <span className="summary-item-label">GST (1%)</span>
+                    <span className="summary-item-value">₹{tax.toFixed(2)}</span>
                 </div>
-                <div className="d-flex justify-content-between mb-4">
-                    <span>Total:</span>
-                    <span>₹{grandTotal.toFixed(2)}</span>
+                <div className="d-flex total-row">
+                    <span className="total-label">Grand Total</span>
+                    <span className="total-amount">₹{grandTotal.toFixed(2)}</span>
                 </div>
             </div>
 
-            <div className="d-flex gap-3">
-                <button className="btn btn-success flex-grow-1"
-                    onClick={() => completePayment("cash")}
-                    disabled={isProcessing}
-                >
-                    {isProcessing ? "Processing..." : "Cash"}
-                </button>
-                <button className="btn btn-primary flex-grow-1"
-                    onClick={() => completePayment("upi")}
-                    disabled={isProcessing}
-                >
-                    {isProcessing ? "Processing..." : "UPI"}
-                </button>
+            <div className="payment-modes-section">
+                <h4>Payment Method</h4>
+                <div className="payment-modes">
+                    <button className={`btn payment-btn ${selectedPaymentMode === 'cash' ? 'btn-success' : 'btn-outline-success'}`}
+                        onClick={() => handlePaymentSelection("cash")}
+                        disabled={isProcessing}
+                    >
+                        <i className="bi bi-cash-stack"></i>
+                        <span> Cash</span>
+                    </button>
+                    <button className={`btn payment-btn ${selectedPaymentMode === 'upi' ? 'btn-primary' : 'btn-outline-primary'}`}
+                        onClick={() => handlePaymentSelection("upi")}
+                        disabled={isProcessing}
+                    >
+                        <i className="bi bi-qr-code-scan"></i>
+                        <span> UPI</span>
+                    </button>
+                </div>
             </div>
-            <div className="d-flex gap-3 mt-3">
-                <button className="btn btn-warning flex-grow-1"
-                    onClick={placeOrder}
-                    disabled={isProcessing || !orderDetails}
-                >
-                    Place Order
-                </button>
-            </div>
-            {
-                showPopup && (
-                    <ReceiptPopup
-                        orderDetails={{
-                            ...orderDetails,
-                            razorpayOrderId: orderDetails.paymentDetails?.razorpayOrderId,
-                            razorpayPaymentId: orderDetails.paymentDetails?.razorpayPaymentId,
-                        }}
-                        onClose={() => setShowPopup(false)}
-                        onPrint={handlePrintReceipt}
-                    />
-                )
-            }
+            <button className="btn place-order-btn"
+                onClick={handlePlaceOrder}
+                disabled={isProcessing || !selectedPaymentMode || cartItems.length === 0}
+            >
+                {isProcessing ? (
+                    <><span className="spinner-border spinner-border-sm me-2"></span>Processing...</>
+                ) : (
+                    <>Place Order Securely <i className="bi bi-shield-lock-fill ms-2"></i></>
+                )}
+            </button>
+
+            {showPopup && (
+                <ReceiptPopup
+                    orderDetails={{
+                        ...orderDetails,
+                        razorpayOrderId: orderDetails.paymentDetails?.razorpayOrderId,
+                        razorpayPaymentId: orderDetails.paymentDetails?.razorpayPaymentId,
+                    }}
+                    onClose={() => setShowPopup(false)}
+                    onPrint={handlePrintReceipt}
+                />
+            )}
         </div>
-    )
-}
+    );
+};
 
 export default CartSummary;

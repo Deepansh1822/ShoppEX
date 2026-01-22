@@ -47,4 +47,10 @@ public class ItemEntity {
     @JoinColumn(name = "category_id", nullable = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
     private CategoryEntity category;
+
+    @org.hibernate.annotations.Formula("(SELECT COALESCE(AVG(r.rating), 0) FROM tbl_reviews r WHERE r.item_id = id)")
+    private Double averageRating;
+
+    @org.hibernate.annotations.Formula("(SELECT COUNT(r.id) FROM tbl_reviews r WHERE r.item_id = id)")
+    private Integer totalReviews;
 }

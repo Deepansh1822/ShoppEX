@@ -4,7 +4,7 @@
     padding: 20px;
     height: calc(100vh - 6.5rem);
     box-sizing: border-box;
-    background-color: var(--bg-primary);
+    background-color: var(--bg-primary) !important;
 }
 
 .left-column {
@@ -33,4 +33,12 @@
     background-color: #ffffff !important;
     color: #000000 !important;
     border: 1px solid #ced4da !important;
+}
+
+/* Add this to change label colors */
+.items-container .form-label {
+    color: #000000 !important;
+    /* Change this to your desired color */
+    font-weight: 500;
+    /* Optional: make it bolder */
 }

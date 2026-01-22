@@ -1,0 +1,28 @@
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Max 3 items per row */
+    gap: 20px;
+    /* Increased gap */
+    padding: 15px;
+    padding-bottom: 20px;
+    /* Ensure bottom items aren't cut off */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .items-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .items-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* The rest of the styles are handled by Item.css, 
+   but we keep these for legacy or fallback if needed, 
+   though Item.jsx uses its own classes now. 
+   We can clean up unused classes. */

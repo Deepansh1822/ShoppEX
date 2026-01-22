@@ -1,0 +1,180 @@
+.manage-category-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 1rem);
+    padding: 1rem 2rem;
+    gap: 1rem;
+    background-color: var(--bg-primary) !important;
+}
+
+.header-container {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 1.25rem 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.page-title {
+    font-size: 1.75rem;
+    margin: 0;
+    background: linear-gradient(to right, var(--text-primary), var(--accent-primary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.page-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 0.15rem 0 0 0;
+    font-weight: 500;
+}
+
+.category-content-container {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    min-height: 0;
+}
+
+.left-column,
+.right-column {
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 1.25rem;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    box-shadow: var(--card-shadow);
+}
+
+.column-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 8px;
+    min-height: 0;
+}
+
+.column-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.column-content::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 10px;
+}
+
+/* Remove hover grow effect from cards inside columns */
+.left-column .card:hover {
+    transform: none !important;
+}
+
+.right-column .category-card {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease !important;
+}
+
+.right-column .category-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.right-column .category-card h5,
+.right-column .category-card p {
+    color: white !important;
+}
+
+.left-column .form-container {
+    background-color: var(--bg-tertiary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.column-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px dashed var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.column-title i {
+    color: var(--accent-primary);
+}
+
+.left-column {
+    flex: 0.4;
+}
+
+.right-column {
+    flex: 0.6;
+}
+
+.category-content-container textarea.form-control,
+.category-content-container input.form-control,
+.category-content-container select.form-control {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid var(--border-color) !important;
+    font-size: 0.85rem !important;
+    padding: 0.6rem 0.8rem !important;
+}
+
+.category-content-container .right-column .form-control {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+}
+
+.category-content-container .input-group-text {
+    font-size: 0.85rem !important;
+    padding: 0.6rem 0.8rem !important;
+}
+
+.category-content-container .form-label {
+    color: var(--text-primary) !important;
+    font-weight: 600;
+    font-size: 0.8rem !important;
+    margin-bottom: 0.4rem;
+}
+
+.empty-categories-fallback i {
+    color: var(--accent-primary);
+    opacity: 0.6;
+}
+
+body.dark .empty-categories-fallback p {
+    color: var(--text-secondary) !important;
+}
+
+body.dark .empty-categories-fallback i {
+    opacity: 0.4;
+    color: var(--accent-primary) !important;
+}
+
+/* Global Delete Circle Button Styling */
+.btn-circle {
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+}
+
+.btn-circle:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 8px 15px rgba(239, 68, 68, 0.4), 0 0 20px rgba(239, 68, 68, 0.2) !important;
+    filter: brightness(1.1);
+    background-color: #ef4444 !important;
+    border-color: #ef4444 !important;
+    color: white !important;
+}

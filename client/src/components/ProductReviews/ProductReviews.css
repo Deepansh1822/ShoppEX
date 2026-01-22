@@ -1,0 +1,71 @@
+.add-review-section {
+    border: 1px solid var(--border-color);
+    /* Thin border matching dashboard style */
+    border-radius: 1rem;
+    background: var(--bg-secondary);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.reviews-container {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border-radius: 1rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    /* Added border as requested */
+}
+
+.review-img-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.review-img-thumb:hover {
+    transform: scale(1.1);
+}
+
+.text-wrap-cust {
+    white-space: pre-wrap;
+    max-width: 400px;
+}
+
+/* Dark mode adjustments */
+body.dark .add-review-section {
+    background-color: #343a40 !important;
+    color: #f8f9fa;
+}
+
+body.dark .table {
+    color: #f8f9fa;
+}
+
+body.dark .table-light {
+    background-color: #495057;
+    color: #f8f9fa;
+    border-color: #6c757d;
+}
+
+body.dark .table-hover tbody tr:hover {
+    color: #fff;
+    background-color: #495057;
+}
+
+body.dark .form-control,
+body.dark .form-select {
+    background-color: #495057;
+    border-color: #6c757d;
+    color: #fff;
+}
+
+body.dark .form-control:focus,
+body.dark .form-select:focus {
+    background-color: #495057;
+    color: #fff;
+}

@@ -34,16 +34,17 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemResponse add(ItemRequest request, MultipartFile file) throws IOException {
-        //String imgUrl = fileUploadService.uploadFile(file);
-        String fileName = UUID.randomUUID().toString()+"."+ StringUtils.getFilenameExtension(file.getOriginalFilename());
+        // String imgUrl = fileUploadService.uploadFile(file);
+        String fileName = UUID.randomUUID().toString() + "."
+                + StringUtils.getFilenameExtension(file.getOriginalFilename());
         Path uploadPath = Paths.get("uploads").toAbsolutePath().normalize();
         Files.createDirectories(uploadPath);
         Path targetLocation = uploadPath.resolve(fileName);
         Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
-        String imgUrl = "http://localhost:8080/api/v1.0/uploads/"+fileName;
+        String imgUrl = "http://localhost:8080/api/v1.0/uploads/" + fileName;
         ItemEntity newItem = convertToEntity(request);
         CategoryEntity existingCategory = categoryRepository.findByCategoryId(request.getCategoryId())
-                .orElseThrow(() -> new RuntimeException("Category not found: "+request.getCategoryId()));
+                .orElseThrow(() -> new RuntimeException("Category not found: " + request.getCategoryId()));
         newItem.setCategory(existingCategory);
         newItem.setImgUrl(imgUrl);
         newItem = itemRepository.save(newItem);
@@ -61,6 +62,8 @@ public class ItemServiceImpl implements ItemService {
                 .categoryId(newItem.getCategory().getCategoryId())
                 .createdAt(newItem.getCreatedAt())
                 .updatedAt(newItem.getUpdatedAt())
+                .averageRating(newItem.getAverageRating())
+                .totalReviews(newItem.getTotalReviews())
                 .build();
     }
 
@@ -84,10 +87,11 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void deleteItem(String itemId) {
         ItemEntity existingItem = itemRepository.findByItemId(itemId)
-                .orElseThrow(() -> new RuntimeException("Item not found: "+itemId));
-        //boolean isFileDelete = fileUploadService.deleteFile(existingItem.getImgUrl());
+                .orElseThrow(() -> new RuntimeException("Item not found: " + itemId));
+        // boolean isFileDelete =
+        // fileUploadService.deleteFile(existingItem.getImgUrl());
         String imgUrl = existingItem.getImgUrl();
-        String fileName = imgUrl.substring(imgUrl.lastIndexOf("/")+1);
+        String fileName = imgUrl.substring(imgUrl.lastIndexOf("/") + 1);
         Path uploadPath = Paths.get("uploads").toAbsolutePath().normalize();
         Path filePath = uploadPath.resolve(fileName);
         try {

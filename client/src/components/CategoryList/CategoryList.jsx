@@ -28,8 +28,10 @@ const CategoryList = () => {
         }
     }
 
+    const { dataLoading } = useContext(AppContext);
+
     return (
-        <div className="category-list-container" style={{ height: '100vh', overflowY: 'auto', overflowX: 'hidden' }}>
+        <div className="category-list-container">
             <div className="row pe-2">
                 <div className="input-group mb-3">
                     <input type="text"
@@ -41,32 +43,47 @@ const CategoryList = () => {
                         value={searchTerm}
                     />
                     <span className="input-group-text bg-warning">
-                        <i className="bi bi-search"></i>
+                        <i className="bi bi-search text-dark"></i>
                     </span>
                 </div>
             </div>
             <div className="row g-3 pe-2">
-                {filteredCategories.map((category, index) => (
-                    <div key={index} className="col-12">
-                        <div className="card p-3 category-card" style={{ backgroundColor: category.bgColor }}>
-                            <div className="d-flex align-items-center">
-                                <div style={{ marginRight: '15px' }}>
-                                    <img src={category.imgUrl} alt={category.name} className="category-image" />
-                                </div>
-                                <div className="flex-grow-1">
-                                    <h5 className="mb-1 text-white">{category.name}</h5>
-                                    <p className="mb-0 text-white">{category.items} Items</p>
-                                </div>
-                                <div>
-                                    <button className="btn btn-danger btn-sm"
-                                        onClick={() => deleteByCategoryId(category.categoryId)}>
-                                        <i className="bi bi-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
+                {dataLoading ? (
+                    <div className="col-12 text-center py-5">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading...</span>
                         </div>
                     </div>
-                ))}
+                ) : (
+                    filteredCategories.length === 0 ? (
+                        <div className="col-12 text-center py-5 empty-categories-fallback">
+                            <i className="bi bi-grid-3x3-gap opacity-25" style={{ fontSize: '3rem', display: 'block' }}></i>
+                            <p className="text-muted mt-3">No categories found in the system matching your search.</p>
+                        </div>
+                    ) : (
+                        filteredCategories.map((category, index) => (
+                            <div key={index} className="col-12">
+                                <div className="card p-3 category-card" style={{ backgroundColor: category.bgColor }}>
+                                    <div className="d-flex align-items-center">
+                                        <div style={{ marginRight: '15px' }}>
+                                            <img src={category.imgUrl} alt={category.name} className="category-image" />
+                                        </div>
+                                        <div className="flex-grow-1">
+                                            <h5 className="mb-1 text-white">{category.name}</h5>
+                                            <p className="mb-0 text-white">{category.items} Items</p>
+                                        </div>
+                                        <div>
+                                            <button className="btn btn-danger btn-sm btn-circle"
+                                                onClick={() => deleteByCategoryId(category.categoryId)}>
+                                                <i className="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    )
+                )}
             </div>
         </div>
     )

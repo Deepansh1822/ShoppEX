@@ -1,0 +1,46 @@
+.customer-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group-custom {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group-custom label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-left: 0.5rem;
+}
+
+.input-group-custom .form-control {
+    background: #ffffff !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    padding: 0.8rem 1rem !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    color: #0f172a !important;
+    transition: all 0.3s ease !important;
+}
+
+.input-group-custom .form-control:focus {
+    border-color: var(--accent-primary) !important;
+    background: var(--bg-primary) !important;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1) !important;
+    transform: translateY(-2px);
+}
+
+body.dark .input-group-custom .form-control {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark .input-group-custom .form-control:focus {
+    background: #ffffff !important;
+}

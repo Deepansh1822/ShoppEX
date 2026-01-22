@@ -4,7 +4,7 @@
     padding: 20px;
     height: calc(100vh - 6.5rem);
     box-sizing: border-box;
-    background-color: var(--bg-primary);
+    background-color: var(--bg-primary) !important;
 }
 
 .left-column {
@@ -27,4 +27,22 @@
     height: 100%;
     box-sizing: border-box;
     overflow-y: auto;
+}
+
+.btn-circle {
+    width: 35px !important;
+    height: 35px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+}
+
+/* Add this to change label colors */
+.users-container .form-label {
+    color: #000000 !important;
+    /* Change this to your desired color */
+    font-weight: 500;
+    /* Optional: make it bolder */
 }

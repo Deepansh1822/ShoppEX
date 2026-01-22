@@ -16,9 +16,9 @@
 }
 
 .login-card .form-control {
-    background-color: #ffffff;
+    background-color: #ffffff !important;
     border-color: #ced4da;
-    color: #495057;
+    color: #000000 !important;
 }
 
 .login-card .form-control::placeholder {

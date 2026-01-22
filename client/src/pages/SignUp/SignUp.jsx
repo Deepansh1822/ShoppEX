@@ -1,4 +1,5 @@
-import './SignUp.css';
+// import './SignUp.css';
+import './SignUp.pro.css';
 import { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext.jsx";
 import toast from "react-hot-toast";
@@ -44,9 +45,12 @@ const Signup = () => {
     }
 
     return (
-        <div className="bg-light d-flex align-items-center justify-content-center vh-100 signup-background" style={{ backgroundImage: `url(${assets.signin_img})` }}>
+        <div className="bg-light d-flex align-items-center justify-content-center vh-100 signup-background page-entry-anim" style={{ backgroundImage: `url(${assets.signin_img})` }}>
             <div className="card shadow-lg w-100 signup-card" style={{ maxWidth: '480px' }}>
-                <div className="card-body">
+                <div className="card-body position-relative">
+                    <Link to="/" className="back-to-welcome" title="Back to Welcome">
+                        <i className="bi bi-house-door-fill"></i>
+                    </Link>
                     <div className="text-center">
                         <h1 className="card-title">Sign Up</h1>
                         <p className="card-text text-muted">
@@ -56,15 +60,15 @@ const Signup = () => {
                     <div className="mt-4">
                         <form onSubmit={onSubmitHandler} autoComplete="off">
                             <div className="form-floating mb-3">
-                                <input type="text" name="name" id="name" className="form-control" placeholder="Name" onChange={onChangeHandler} value={data.name} required autoComplete="off" />
+                                <input type="text" name="name" id="name" className="form-control" placeholder="" onChange={onChangeHandler} value={data.name} required autoComplete="off" />
                                 <label htmlFor="name" className="text-muted">Name</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input type="email" name="email" id="email" className="form-control" placeholder="Email" onChange={onChangeHandler} value={data.email} required autoComplete="off" />
+                                <input type="email" name="email" id="email" className="form-control" placeholder="" onChange={onChangeHandler} value={data.email} required autoComplete="off" />
                                 <label htmlFor="email" className="text-muted">Email</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input type="password" name="password" id="password" className="form-control" placeholder="Password" onChange={onChangeHandler} value={data.password} required autoComplete="new-password" />
+                                <input type="password" name="password" id="password" className="form-control" placeholder="" onChange={onChangeHandler} value={data.password} required autoComplete="new-password" />
                                 <label htmlFor="password" className="text-muted">Password</label>
                             </div>
 

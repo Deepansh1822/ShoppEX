@@ -32,13 +32,46 @@
 
 .dropdown-item {
     padding: 10px 20px;
-    font-weight: 500;
+    font-weight: bold;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .dropdown-item:hover {
     background-color: var(--bg-tertiary);
     color: var(--accent-color);
+}
+
+/* Dark mode theme toggle */
+body.dark .dropdown-item.dropdown-toggle {
+    color: #f8f9fa;
+    /* light text */
+    background-color: transparent;
+    /* no white background */
+}
+
+body.dark .dropdown-item.dropdown-toggle:hover {
+    background-color: #495057;
+    /* hover background */
+    color: #fff;
+    /* white text on hover */
+}
+
+/* Dark mode dropdown styling */
+body.dark .dropdown-menu {
+    background-color: #2b3035;
+    /* dark background */
+    color: #f8f9fa;
+    /* light text */
+}
+
+body.dark .dropdown-item {
+    color: #f8f9fa;
+}
+
+body.dark .dropdown-item:hover {
+    background-color: #495057;
+    /* slightly lighter dark on hover */
+    color: #fff;
 }
 
 .nav-item {

@@ -1,0 +1,207 @@
+.orders-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    background-color: var(--bg-primary) !important;
+}
+
+.orders-page-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.orders-page-wrapper::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 10px;
+}
+
+.header-container {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 1.25rem 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.page-title {
+    font-size: 1.75rem;
+    margin: 0;
+    background: linear-gradient(to right, var(--text-primary), var(--accent-primary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+}
+
+.page-title i {
+    -webkit-text-fill-color: initial;
+    color: var(--accent-primary);
+    margin-right: 0.75rem;
+}
+
+.page-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 0.15rem 0 0 0;
+    font-weight: 500;
+}
+
+.orders-history-container {
+    padding-bottom: 2rem;
+}
+
+.table-responsive {
+    background: var(--bg-secondary);
+    border-radius: 24px;
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-color);
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead {
+    display: none;
+    /* We'll use a more modern approach or refined headers */
+}
+
+/* Custom table styling to match Dashboard orders */
+.table thead.table-dark {
+    display: table-header-group;
+    background: var(--bg-tertiary) !important;
+}
+
+.table thead th {
+    background: transparent !important;
+    color: var(--text-muted) !important;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    padding: 1.5rem 1rem !important;
+    border: none;
+}
+
+.table tbody tr {
+    background-color: transparent !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Zebra striping with a professional tint */
+.table tbody tr:nth-child(even) {
+    background-color: rgba(99, 102, 241, 0.02) !important;
+}
+
+body.dark .table tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+/* Consistent hover state for ALL rows */
+.table tbody tr:hover {
+    background-color: var(--bg-tertiary) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px -10px rgba(0, 0, 0, 0.2);
+    cursor: default;
+}
+
+body.dark .table tbody tr:hover {
+    box-shadow: 0 12px 25px -10px rgba(0, 0, 0, 0.5);
+}
+
+.table td {
+    padding: 1.25rem 1rem !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    color: var(--text-secondary) !important;
+    vertical-align: middle;
+    background: transparent !important;
+    font-size: 0.9rem;
+}
+
+/* Key information columns - use primary text color */
+.table td:nth-child(1),
+.table td:nth-child(2),
+.table td:nth-child(4) {
+    color: var(--text-primary) !important;
+    font-weight: 600;
+}
+
+/* Secondary info - use secondary/muted color */
+.table td:nth-child(3),
+.table td:nth-child(5),
+.table td:nth-child(7) {
+    color: var(--text-secondary) !important;
+}
+
+.table td small {
+    color: var(--text-muted) !important;
+}
+
+.badge {
+    padding: 0.5rem 1rem !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    font-size: 0.7rem !important;
+}
+
+.bg-success {
+    background: #10b981 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.bg-warning {
+    background: rgba(245, 158, 11, 0.15) !important;
+    color: #f59e0b !important;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.empty-orders-state {
+    background: var(--bg-secondary);
+    border-radius: 24px;
+    border: 1px dashed var(--border-color);
+    margin-top: 1rem;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.empty-orders-state i {
+    color: var(--accent-primary);
+    opacity: 0.8;
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+.empty-orders-state p {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+body.dark .empty-orders-state p {
+    color: var(--text-primary);
+}
+
+body.dark .empty-orders-state i {
+    text-shadow: 0 0 25px rgba(129, 140, 248, 0.3);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

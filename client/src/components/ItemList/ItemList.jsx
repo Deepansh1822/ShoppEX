@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import './ItemList.css';
 
 const ItemList = () => {
-    const { itemsData, setItemsData, categories, setCategories } = useContext(AppContext);
+    const { itemsData, setItemsData, categories, setCategories, dataLoading } = useContext(AppContext);
     const [searchTerm, setSearchTerm] = useState("");
 
     const filteredItems = itemsData.filter((item) => {
@@ -19,16 +19,16 @@ const ItemList = () => {
             if (response.status === 204) {
                 const updatedItems = itemsData.filter(item => item.itemId !== itemId);
                 setItemsData(updatedItems);
-                
+
                 if (itemToDelete) {
-                    const updatedCategories = categories.map(cat => 
-                        cat.categoryId === itemToDelete.categoryId 
-                        ? { ...cat, items: cat.items - 1 } 
-                        : cat
+                    const updatedCategories = categories.map(cat =>
+                        cat.categoryId === itemToDelete.categoryId
+                            ? { ...cat, items: cat.items - 1 }
+                            : cat
                     );
                     setCategories(updatedCategories);
                 }
-                
+
                 toast.success("Item deleted");
             } else {
                 toast.error("Unable to delete item");
@@ -40,8 +40,8 @@ const ItemList = () => {
     }
 
     return (
-        <div className="category-list-container" style={{ height: '100vh', overflowY: 'auto', overflowX: 'hidden' }}>
-            <div className="row">
+        <div className="item-list-container">
+            <div className="row pe-2">
                 <div className="input-group mb-3">
                     <input type="text"
                         name="keyword"
@@ -52,36 +52,51 @@ const ItemList = () => {
                         value={searchTerm}
                     />
                     <span className="input-group-text bg-warning">
-                        <i className="bi bi-search"></i>
+                        <i className="bi bi-search text-dark"></i>
                     </span>
                 </div>
             </div>
-            <div className="row g-3">
-                {filteredItems.map((item, index) => (
-                    <div className="col-lg-12" key={index}>
-                        <div className="card p-3 bg-dark item-card">
-                            <div className="d-flex align-items-center">
-                                <div style={{ marginRight: '15px' }}>
-                                    <img src={item.imgUrl} alt={item.name} className="item-image" />
-                                </div>
-                                <div className="flex-grow-1">
-                                    <h6 className="mb-1 text-white">{item.name}</h6>
-                                    <p className="mb-0 text-white">
-                                        Category: {item.categoryName}
-                                    </p>
-                                    <span className="mb-0 text-block badge rounded-pill text-bg-warning">
-                                        &#8377;{item.price}
-                                    </span>
-                                </div>
-                                <div>
-                                    <button className="btn btn-danger btn-sm" onClick={() => removeItem(item.itemId)}>
-                                        <i className="bi bi-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
+            <div className="row g-3 pe-2">
+                {dataLoading ? (
+                    <div className="col-12 text-center py-5">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading...</span>
                         </div>
                     </div>
-                ))}
+                ) : (
+                    filteredItems.length === 0 ? (
+                        <div className="col-12 text-center py-5 empty-items-fallback">
+                            <i className="bi bi-box-seam opacity-25" style={{ fontSize: '3rem', display: 'block' }}></i>
+                            <p className="text-muted mt-3">Your inventory catalog is currently empty matching those criteria.</p>
+                        </div>
+                    ) : (
+                        filteredItems.map((item, index) => (
+                            <div className="col-lg-12" key={index}>
+                                <div className="card p-3 item-card">
+                                    <div className="d-flex align-items-center">
+                                        <div style={{ marginRight: '15px' }}>
+                                            <img src={item.imgUrl} alt={item.name} className="item-image" />
+                                        </div>
+                                        <div className="flex-grow-1">
+                                            <h6 className="mb-1">{item.name}</h6>
+                                            <p className="mb-0">
+                                                Category: {item.categoryName}
+                                            </p>
+                                            <span className="mb-0 text-block badge rounded-pill text-bg-warning">
+                                                &#8377;{item.price}
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <button className="btn btn-danger btn-sm btn-circle" onClick={() => removeItem(item.itemId)}>
+                                                <i className="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    )
+                )}
             </div>
         </div>
     )

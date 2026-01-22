@@ -1,7 +1,11 @@
 import api from "../api/axios";
 
-export const addUser = async (user) => {
-    return await api.post('/admin/register', user);
+export const addUser = async (formData) => {
+    return await api.post('/admin/register', formData, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        }
+    });
 }
 
 export const deleteUser = async (id) => {
