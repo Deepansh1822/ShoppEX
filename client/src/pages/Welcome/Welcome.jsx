@@ -52,11 +52,11 @@ const Welcome = () => {
                 </div>
                 <div className="text-reveal-container">
                     <h1 className={`welcome-text revelation-effect delay-1 ${isVisible ? 'active' : ''}`}>
-                        Modern Shopping
+                        Modern Billing
                     </h1>
                 </div>
                 <p className={`welcome-text-sub fade-up-effect ${isVisible ? 'active' : ''}`}>
-                    MARKETPLACE OF THE FUTURE
+                    MANAGEMENT HUB OF THE FUTURE
                 </p>
             </div>
 

@@ -11,6 +11,7 @@ const Login = () => {
     const { setAuthData } = useContext(AppContext);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const [data, setData] = useState({
         email: "",
         password: "",
@@ -27,9 +28,6 @@ const Login = () => {
         setLoading(true);
         try {
             const response = await login(data);
-            // console.log("LOGIN RESPONSE:", response.data);
-            // console.log("TOKEN:", response.data.token);
-            console.log("FORM SUBMITTED");
             if (response.status === 200) {
                 toast.success("Login successfull");
                 localStorage.setItem("token", response.data.token);
@@ -40,7 +38,6 @@ const Login = () => {
                 } else {
                     navigate("/explore");
                 }
-
             }
         } catch (error) {
             console.error(error);
@@ -51,42 +48,70 @@ const Login = () => {
     }
 
     return (
-        <div className="bg-light d-flex align-items-center justify-content-center vh-100 login-background page-entry-anim" style={{ backgroundImage: `url(${assets.login_img})` }}>
-            <div className="card shadow-lg w-100 login-card" style={{ maxWidth: '480px' }}>
-                <div className="card-body position-relative">
-                    <Link to="/" className="back-to-welcome" title="Back to Welcome">
-                        <i className="bi bi-house-door-fill"></i>
+        <div className="login-split-container page-entry-anim">
+            {/* Left Section: Branding & Image */}
+            <div className="login-left-section" style={{ backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 100%), url(${assets.login_img})` }}>
+                <div className="login-branding-content">
+                    <img src={assets.welcomelogo} alt="ShoppEX Logo" className="login-side-logo mb-4" />
+                    <div className="branding-divider mb-4"></div>
+                    <p className="branding-tagline">MASTER YOUR BUSINESS WITH PRECISION</p>
+                </div>
+            </div>
+
+            {/* Right Section: Form */}
+            <div className="login-right-section d-flex align-items-center justify-content-center">
+                <div className="login-form-card w-100" style={{ maxWidth: '420px' }}>
+                    <Link to="/" className="back-link mb-4 d-inline-block">
+                        <i className="bi bi-chevron-left"></i> Back to Home
                     </Link>
-                    <div className="text-center">
-                        <h1 className="card-title">Login</h1>
-                        <p className="card-text text-muted">
-                            Login below to Access your Account
-                        </p>
+                    
+                    <div className="form-header mb-5">
+                        <h2 className="fw-extra-bold">Login to Account</h2>
+                        <p className="text-secondary">Enter your credentials to access the management hub.</p>
                     </div>
-                    <div className="mt-4">
-                        <form onSubmit={onSubmitHandler} autoComplete="off">
-                            <div className="form-floating mb-4">
-                                <input type="text" name="email" id="email" placeholder="" className="form-control" onChange={onChangeHandler} value={data.email} autoComplete="off" />
-                                <label htmlFor="email" className="text-muted">
-                                    Email
-                                </label>
+                    
+                    <form onSubmit={onSubmitHandler} className="custom-form">
+                        <div className="input-field mb-4">
+                            <label>Email Address</label>
+                            <div className="input-wrapper">
+                                <i className="bi bi-envelope-at field-icon"></i>
+                                <input type="email" name="email" id="email" placeholder="admin@shoppex.com" onChange={onChangeHandler} value={data.email} required />
                             </div>
-                            <div className="form-floating mb-4">
-                                <input type="password" name="password" id="password" placeholder="" className="form-control" onChange={onChangeHandler} value={data.password} autoComplete="new-password" />
-                                <label htmlFor="password" className="text-muted">
-                                    Password
-                                </label>
+                        </div>
+
+                        <div className="input-field mb-4">
+                            <label>Secure Password</label>
+                            <div className="input-wrapper">
+                                <i className="bi bi-shield-lock field-icon"></i>
+                                <input 
+                                    type={showPassword ? "text" : "password"} 
+                                    name="password" 
+                                    id="password" 
+                                    placeholder="••••••••" 
+                                    onChange={onChangeHandler} 
+                                    value={data.password} 
+                                    required 
+                                />
+                                <i 
+                                    className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'} toggle-password`} 
+                                    onClick={() => setShowPassword(!showPassword)}
+                                ></i>
                             </div>
-                            <div className="d-grid">
-                                <button type="submit" className="btn btn-dark btn-lg" disabled={loading}>
-                                    {loading ? "Loading..." : "Login"}
-                                </button>
-                            </div>
-                            <div className="text-center mt-3">
-                                <Link to="/signup" className="text-decoration-none">If not registered? Sign Up</Link>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+
+                        <button type="submit" className="submit-btn mt-4" disabled={loading}>
+                            {loading ? (
+                                <div className="spinner-border spinner-border-sm" role="status"></div>
+                            ) : (
+                                <>Access Dashboard <i className="bi bi-arrow-right ms-2"></i></>
+                            )}
+                        </button>
+
+                        <div className="auth-footer text-center mt-5">
+                            <span className="text-muted">New to the platform?</span>
+                            <Link to="/signup" className="ms-2 signup-link">Create an account</Link>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

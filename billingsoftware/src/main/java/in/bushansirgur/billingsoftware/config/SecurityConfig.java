@@ -38,7 +38,7 @@ public class SecurityConfig {
         http.cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/register", "/uploads/**", "/encode").permitAll()
+                        .requestMatchers("/login", "/register", "/uploads/**", "/encode", "/categories", "/items").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers(org.springframework.http.HttpMethod.GET, "/feedback").hasRole("ADMIN")
                         .anyRequest().authenticated())

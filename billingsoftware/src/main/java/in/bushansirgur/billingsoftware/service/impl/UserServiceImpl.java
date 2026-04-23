@@ -4,20 +4,16 @@ import in.bushansirgur.billingsoftware.entity.UserEntity;
 import in.bushansirgur.billingsoftware.io.UserRequest;
 import in.bushansirgur.billingsoftware.io.UserResponse;
 import in.bushansirgur.billingsoftware.repository.UserRepository;
+import in.bushansirgur.billingsoftware.service.FileUploadService;
 import in.bushansirgur.billingsoftware.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -28,6 +24,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final FileUploadService fileUploadService;
 
     @Override
     public UserResponse createUser(UserRequest request) {
@@ -42,14 +39,7 @@ public class UserServiceImpl implements UserService {
         newUser = userRepository.save(newUser);
 
         if (file != null && !file.isEmpty()) {
-            String fileName = UUID.randomUUID().toString() + "."
-                    + StringUtils.getFilenameExtension(file.getOriginalFilename());
-            Path uploadPath = Paths.get("uploads").toAbsolutePath().normalize();
-            Files.createDirectories(uploadPath);
-            Path targetLocation = uploadPath.resolve(fileName);
-            Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
-
-            String imgUrl = "http://localhost:8080/api/v1.0/uploads/" + fileName;
+            String imgUrl = fileUploadService.uploadFile(file);
             newUser.setProfileImage(imgUrl);
             newUser = userRepository.save(newUser);
         }
@@ -98,6 +88,7 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(String id) {
         UserEntity existingUser = userRepository.findByUserId(id)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        fileUploadService.deleteFile(existingUser.getProfileImage());
         userRepository.delete(existingUser);
     }
 
@@ -113,16 +104,7 @@ public class UserServiceImpl implements UserService {
         UserEntity existingUser = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found for the email: " + email));
 
-        String fileName = UUID.randomUUID().toString() + "."
-                + StringUtils.getFilenameExtension(file.getOriginalFilename());
-        Path uploadPath = Paths.get("uploads").toAbsolutePath().normalize();
-        Files.createDirectories(uploadPath);
-        Path targetLocation = uploadPath.resolve(fileName);
-        Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
-
-        // Assuming the backend is running on port 8080 and context path is /api/v1.0
-        // Ideally, base URL should be configurable
-        String imgUrl = "http://localhost:8080/api/v1.0/uploads/" + fileName;
+        String imgUrl = fileUploadService.uploadFile(file);
 
         existingUser.setProfileImage(imgUrl);
         existingUser = userRepository.save(existingUser);

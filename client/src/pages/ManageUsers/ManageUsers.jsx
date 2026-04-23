@@ -32,7 +32,7 @@ const ManageUsers = () => {
                 <div className="header-content">
                     <h2 className="page-title">
                         <i className="bi bi-person-workspace me-3"></i>
-                        IAM Console
+                        Identity and Access Management
                         <span className="badge-status security">SECURE</span>
                     </h2>
                     <p className="page-subtitle">Centralized identity and access management for system operators</p>
